@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    private final Logger log = LoggerFactory.getLogger(Controller.class);
-
     private final NotaPredareRepository notaPredareRepository;
     private final DepozitRepository depozitRepository;
     private final  ProdusFinitRepository produsFinitRepository;
@@ -45,14 +43,18 @@ public class Controller {
         return prodFinit.get();
     }
 
+    public void pushProdusFinit(ProdusFinit prodFin, Depozit depozit, NotaPredare newNotaPredare) {
+        depozit.getProduseFinite().add(prodFin);
+        depozitRepository.save(depozit);
+        notaPredareRepository.save(newNotaPredare);
+    }
+
     public Depozit getDepozitById(Long id) {
         Optional<Depozit> depozit = depozitRepository.findById(id);
         return depozit.get();
     }
 
-    public void pushProdusFinit(ProdusFinit prodFin, Depozit depozit) {
-        depozit.getProduseFinite().add(prodFin);
-        depozitRepository.save(depozit);
+    public List<Depozit> getAllDepozite(){
+        return depozitRepository.findAll();
     }
-
 }

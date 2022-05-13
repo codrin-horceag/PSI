@@ -11,9 +11,7 @@ import com.proiectmvc.demo.produsfinit.ProdusFinit;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-/**
- * A Depozit.
- */
+
 @Entity
 @Table(name = "depozit")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -53,7 +51,6 @@ public class Depozit implements Serializable {
         this.produseFinite = produseFinite;
     }
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
         return this.id;
@@ -138,7 +135,6 @@ public class Depozit implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -153,11 +149,9 @@ public class Depozit implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Depozit{" +
