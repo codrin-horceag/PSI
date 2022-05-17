@@ -1,27 +1,31 @@
 package com.proiectmvc.demo.view;
 
-import com.proiectmvc.demo.ProiectPsiApplication;
 import com.proiectmvc.demo.controller.Controller;
 import com.proiectmvc.demo.depozit.Depozit;
 import com.proiectmvc.demo.document.NotaPredare;
 import com.proiectmvc.demo.produsfinit.ProdusFinit;
-import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import javax.naming.ldap.Control;
-import java.awt.*;
-import java.awt.Button;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class View {
+public class View implements Initializable {
     private final Controller controller;
+    @FXML
+    private Button btnAdauga;
+
     @FXML
     private Button btnSalveaza;
 
@@ -29,13 +33,22 @@ public class View {
     private TableColumn<ProdusFinit, Double> cantitate;
 
     @FXML
-    private ComboBox<Depozit> cmbDepozite;
+    private TableColumn<ProdusFinit, Double> cantitate1;
+
+    @FXML
+    private ComboBox<?> cmbDepozite;
 
     @FXML
     private TableColumn<ProdusFinit, Long> codProdus;
 
     @FXML
+    private TableColumn<ProdusFinit, Long> codProdus1;
+
+    @FXML
     private TableColumn<ProdusFinit, String> denumireProdus;
+
+    @FXML
+    private TableColumn<ProdusFinit, String> denumireProdus1;
 
     @FXML
     private DatePicker dtpDataEliberare;
@@ -56,46 +69,99 @@ public class View {
     private Label lblNotaPredare;
 
     @FXML
+    private Label lblProdDisponibile;
+
+    @FXML
+    private Label lblProdSelectate;
+
+    @FXML
     private Label lblSelectatiDepozitul;
 
     @FXML
     private Label lblSelectatiProdusele;
 
     @FXML
-    private TableView<ProdusFinit> tabel;
+    private TableView<ProdusFinit> prodDisponibile;
+
+    @FXML
+    private TableView<ProdusFinit> prodSelectate;
 
     @FXML
     private TextField txtCodDocument;
 
     @FXML
-    private TableColumn<ProdusFinit, String> um;
+    private TableColumn<ProdusFinit,String> um;
+
+    @FXML
+    private TableColumn<ProdusFinit,String> um1;
+
 
     @FXML
     void salvare(ActionEvent event) {
-
+        //transferProdus();
     }
+
 
     public View(Controller controller) {
         this.controller = controller;
     }
 
+    @FXML
     public List<ProdusFinit> getAllProduseFinite() {
         return controller.getAllProduseFinite();
     }
 
+    @FXML
     public Depozit getDepozitById(Long id) {
         return controller.getDepozitById(id);
     }
 
+    @FXML
     public void createNotaPredare(NotaPredare notaPredare) {
         controller.createNotaPredare(notaPredare);
     }
 
-    public void transferProdus(List<ProdusFinit> produseFinite, Depozit depozit, NotaPredare notaPredare) {
-        controller.pushProdusFinit(produseFinite, depozit, notaPredare);
+//    @FXML
+//    public void transferProdus(ProdusFinit produsFinit, Depozit depozit, NotaPredare notaPredare) {
+//        controller.pushProdusFinit(produsFinit, depozit, notaPredare);
+//    }
+
+    @FXML
+    public List<Depozit> getAllDepozite(){
+        return controller.getAllDepozite();
     }
 
- //   public void initialize {
+    @FXML
+    public void selecteazaProdus(){
+
+    }
+
+    /*public void initialize(URL url, ResourceBundle resourceBundle) {
+        denumireProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,String>("denumireProdus"));
+        codProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,Long>("codProdus"));
+        cantitate.setCellValueFactory(new PropertyValueFactory<ProdusFinit, Double>("cantitate"));
+        um.setCellValueFactory(new PropertyValueFactory<ProdusFinit,String>("um"));
+
+        prodDisponibile.setItems(produseFinite);
+    }*/
+//    ObservableList<ProdusFinit> produseFinite = FXCollections.observableArrayList(
+//            new ProdusFinit(1,"inghetata cu vanilie", 2.0,"cutii"),
+//            new ProdusFinit(2,"inghetata cu ciocolata", 3.0, "baxuri"),
+//            new ProdusFinit(3,"inghetata cu caramel", 4.0,"cutii")
+//    );
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        denumireProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,String>("denumireProdus"));
+        codProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,Long>("codProdus"));
+        cantitate.setCellValueFactory(new PropertyValueFactory<ProdusFinit, Double>("cantitate"));
+        um.setCellValueFactory(new PropertyValueFactory<ProdusFinit,String>("um"));
+        ObservableList<ProdusFinit> produseDisponibile = FXCollections.observableArrayList();
+        produseDisponibile.addAll(getAllProduseFinite());
+        prodDisponibile.setItems(produseDisponibile);
+    }
+
+    //   public void initialize {
 
    // }
 
