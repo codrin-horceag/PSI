@@ -91,8 +91,8 @@ public class View {
         controller.createNotaPredare(notaPredare);
     }
 
-    public void transferProdus(ProdusFinit produsFinit, Depozit depozit, NotaPredare notaPredare) {
-        controller.pushProdusFinit(produsFinit, depozit, notaPredare);
+    public void transferProdus(List<ProdusFinit> produseFinite, Depozit depozit, NotaPredare notaPredare) {
+        controller.pushProdusFinit(produseFinite, depozit, notaPredare);
     }
 
  //   public void initialize {

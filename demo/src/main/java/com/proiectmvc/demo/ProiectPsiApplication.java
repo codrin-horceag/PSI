@@ -29,7 +29,7 @@ public class ProiectPsiApplication extends Application{
 
 
 	public void start(Stage stage) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(ProiectPsiApplication.class.getResource("notapredareformular.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(ProiectPsiApplication.class.getResource("notapredare.fxml"));
 		Scene scene = new Scene(fxmlLoader.load());
 		stage.setTitle("Nota Predare");
 		stage.setScene(scene);

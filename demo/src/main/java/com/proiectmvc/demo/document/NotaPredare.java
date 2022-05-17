@@ -2,6 +2,7 @@ package com.proiectmvc.demo.document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -37,6 +38,14 @@ public class NotaPredare extends Document {
     @JsonIgnoreProperties(value = { "produseFinites", "notePredare" }, allowSetters = true)
     private Set<Depozit> depozites = new HashSet<>();
 
+    public NotaPredare() {
+    }
+
+    public NotaPredare(LocalDate dataEliberare, LocalDate dataIntocmire, Integer nrDocument, Set<ProdusFinit> produseFinites, Set<Depozit> depozites) {
+        super(dataEliberare, dataIntocmire, nrDocument);
+        this.produseFinites = produseFinites;
+        this.depozites = depozites;
+    }
 
     public Long getId() {
         return this.id;

@@ -43,8 +43,8 @@ public class Controller {
         return prodFinit.get();
     }
 
-    public void pushProdusFinit(ProdusFinit prodFin, Depozit depozit, NotaPredare newNotaPredare) {
-        depozit.getProduseFinite().add(prodFin);
+    public void pushProdusFinit(List<ProdusFinit> prodFin, Depozit depozit, NotaPredare newNotaPredare) {
+        depozit.getProduseFinite().addAll(prodFin);
         depozitRepository.save(depozit);
         notaPredareRepository.save(newNotaPredare);
     }
