@@ -36,7 +36,7 @@ public class View implements Initializable {
     private TableColumn<ProdusFinit, Double> cantitate1;
 
     @FXML
-    private ComboBox<?> cmbDepozite;
+    private ComboBox<Depozit> cmbDepozite;
 
     @FXML
     private TableColumn<ProdusFinit, Long> codProdus;
@@ -132,7 +132,11 @@ public class View implements Initializable {
     }
 
     @FXML
-    public void selecteazaProdus(){
+    public void selecteazaProdus(ActionEvent e){
+
+    }
+    @FXML
+    public void selecteazaDepozit(ActionEvent e){
 
     }
 
@@ -151,7 +155,6 @@ public class View implements Initializable {
 //    );
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         denumireProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,String>("denumireProdus"));
         codProdus.setCellValueFactory(new PropertyValueFactory<ProdusFinit,Long>("codProdus"));
         cantitate.setCellValueFactory(new PropertyValueFactory<ProdusFinit, Double>("cantitate"));
@@ -160,12 +163,4 @@ public class View implements Initializable {
         produseDisponibile.addAll(getAllProduseFinite());
         prodDisponibile.setItems(produseDisponibile);
     }
-
-    //   public void initialize {
-
-   // }
-
-
-
-
 }

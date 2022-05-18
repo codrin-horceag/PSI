@@ -46,7 +46,7 @@ public class Controller {
     public void pushProdusFinit(List<ProdusFinit> prodFin, Depozit depozit, NotaPredare newNotaPredare) {
         depozit.getProduseFinite().addAll(prodFin);
         depozitRepository.save(depozit);
-        notaPredareRepository.save(newNotaPredare);
+        notaPredareRepository.save(newNotaPredare); //de sters
     }
 
     public Depozit getDepozitById(Long id) {
