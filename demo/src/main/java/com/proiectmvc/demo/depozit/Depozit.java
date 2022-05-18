@@ -32,13 +32,10 @@ public class Depozit implements Serializable {
     @Column(name = "material_depozit")
     private StocDepozit materialDepozit;
 
-    @OneToMany(mappedBy = "depozit")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "depozit", "notePredare" }, allowSetters = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "depozit", cascade = CascadeType.ALL)
     private List<ProdusFinit> produseFinite = new LinkedList<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "produseFinite", "depozites" }, allowSetters = true)
     private NotaPredare notePredare;
 
     public Depozit() {

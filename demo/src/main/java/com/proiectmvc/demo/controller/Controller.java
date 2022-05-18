@@ -9,8 +9,7 @@ import com.proiectmvc.demo.document.NotaPredare;
 import com.proiectmvc.demo.document.NotaPredareRepository;
 import com.proiectmvc.demo.produsfinit.ProdusFinit;
 import com.proiectmvc.demo.produsfinit.ProdusFinitRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 @org.springframework.stereotype.Controller
 public class Controller {

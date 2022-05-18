@@ -17,10 +17,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@Service
 public class View implements Initializable {
     private final Controller controller;
     @FXML
