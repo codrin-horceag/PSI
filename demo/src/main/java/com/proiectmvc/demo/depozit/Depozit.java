@@ -31,7 +31,7 @@ public class Depozit implements Serializable {
     @Column(name = "material_depozit")
     private StocDepozit materialDepozit;
 
-    @OneToMany(mappedBy = "depozit")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "depozit")
     private List<ProdusFinit> produseFinite = new LinkedList<>();
 
     @OneToOne

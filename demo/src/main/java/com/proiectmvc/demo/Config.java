@@ -61,9 +61,10 @@ public class Config {
             for (Depozit d : depozite){
                 System.out.println("id: " + d.getId() + "\n"
                         + "denumire: " + d.getDenumireDepozit() + "\n"
-                        + "tip material: " + d.getMaterialDepozit() +"\n"
-                        + "produsele depozitului:");
+                        + "tip material: " + d.getMaterialDepozit() +"\n");
             }
+
+            System.out.println("====================================================");
 
             //preluare produse finite
             System.out.println("PRODUSE FINITE \n"+
@@ -77,6 +78,10 @@ public class Config {
                         + "unitate masura: " + p.getUnitateMasura());
             }
 
+            System.out.println("====================================================");
+            System.out.println("Test functionalitate formular");
+            System.out.println("====================================================");
+            System.out.println();
             //selectare depozit pentru nota predare, dupa id
             Depozit depozitDeSelectat = view.getDepozitById(1L);
 
@@ -90,6 +95,13 @@ public class Config {
             //in final, efectuarea transferului produselor finite selectate in depozitul selectat
             //in acest proces, se apeleaza controller-ul pentru a crea o nota de predare
             view.transferProdus(listaProduse, depozitDeSelectat, newNotaPredare);
+            System.out.println("S-au adaugat la depozitul " + depozitDeSelectat.getId() + " urmatoarele produse finite: ");
+            for (ProdusFinit p : listaProduse) {
+                System.out.println("id: " + p.getId() + "\n"
+                    + "denumire: " + p.getDenumire() + "\n"
+                    + "cantitate " + p.getCantitate() + "\n"
+                    + "unitate masura: " + p.getUnitateMasura());
+            }
         };
     }
 }
