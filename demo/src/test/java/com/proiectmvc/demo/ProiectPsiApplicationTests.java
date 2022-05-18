@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ProiectPsiApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void tests() {
+
 	}
 
 }

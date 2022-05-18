@@ -1,9 +1,11 @@
 package com.proiectmvc.demo.document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
+
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -29,22 +31,18 @@ public class NotaPredare extends Document {
     private Long id;
 
     @OneToMany(mappedBy = "notePredare")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "depozit", "notePredare" }, allowSetters = true)
-    private Set<ProdusFinit> produseFinites = new HashSet<>();
+    private List<ProdusFinit> produseFinite = new LinkedList<>();
 
-    @OneToMany(mappedBy = "notePredare")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "produseFinites", "notePredare" }, allowSetters = true)
-    private Set<Depozit> depozites = new HashSet<>();
+    @OneToOne(mappedBy = "notePredare")
+    private Depozit depozit;
 
     public NotaPredare() {
     }
 
-    public NotaPredare(LocalDate dataEliberare, LocalDate dataIntocmire, Integer nrDocument, Set<ProdusFinit> produseFinites, Set<Depozit> depozites) {
+    public NotaPredare(LocalDate dataEliberare, LocalDate dataIntocmire, Integer nrDocument, List<ProdusFinit> produseFinite, Depozit depozit) {
         super(dataEliberare, dataIntocmire, nrDocument);
-        this.produseFinites = produseFinites;
-        this.depozites = depozites;
+        this.produseFinite = produseFinite;
+        this.depozit = depozit;
     }
 
     public Long getId() {
@@ -60,66 +58,43 @@ public class NotaPredare extends Document {
         this.id = id;
     }
 
-    public Set<ProdusFinit> getProduseFinites() {
-        return this.produseFinites;
+    public List<ProdusFinit> getProduseFinite() {
+        return this.produseFinite;
     }
 
-    public void setProduseFinites(Set<ProdusFinit> produsFinits) {
-        if (this.produseFinites != null) {
-            this.produseFinites.forEach(i -> i.setNotePredare(null));
+    public void setProduseFinite(List<ProdusFinit> produseFinite) {
+        if (this.produseFinite != null) {
+            this.produseFinite.forEach(i -> i.setNotePredare(null));
         }
-        if (produsFinits != null) {
-            produsFinits.forEach(i -> i.setNotePredare(this));
+        if (produseFinite != null) {
+            produseFinite.forEach(i -> i.setNotePredare(this));
         }
-        this.produseFinites = produsFinits;
+        this.produseFinite = produseFinite;
     }
 
-    public NotaPredare produseFinites(Set<ProdusFinit> produsFinits) {
-        this.setProduseFinites(produsFinits);
+    public NotaPredare produseFinites(List<ProdusFinit> produseFinite) {
+        this.setProduseFinite(produseFinite);
         return this;
     }
 
     public NotaPredare addProduseFinite(ProdusFinit produsFinit) {
-        this.produseFinites.add(produsFinit);
+        this.produseFinite.add(produsFinit);
         produsFinit.setNotePredare(this);
         return this;
     }
 
     public NotaPredare removeProduseFinite(ProdusFinit produsFinit) {
-        this.produseFinites.remove(produsFinit);
+        this.produseFinite.remove(produsFinit);
         produsFinit.setNotePredare(null);
         return this;
     }
 
-    public Set<Depozit> getDepozites() {
-        return this.depozites;
+    public Depozit getDepozit() {
+        return depozit;
     }
 
-    public void setDepozites(Set<Depozit> depozits) {
-        if (this.depozites != null) {
-            this.depozites.forEach(i -> i.setNotePredare(null));
-        }
-        if (depozits != null) {
-            depozits.forEach(i -> i.setNotePredare(this));
-        }
-        this.depozites = depozits;
-    }
-
-    public NotaPredare depozites(Set<Depozit> depozits) {
-        this.setDepozites(depozits);
-        return this;
-    }
-
-    public NotaPredare addDepozite(Depozit depozit) {
-        this.depozites.add(depozit);
-        depozit.setNotePredare(this);
-        return this;
-    }
-
-    public NotaPredare removeDepozite(Depozit depozit) {
-        this.depozites.remove(depozit);
-        depozit.setNotePredare(null);
-        return this;
+    public void setDepozit(Depozit depozit) {
+        this.depozit = depozit;
     }
 
 

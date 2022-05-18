@@ -13,15 +13,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 
 @Entity
-@Table(name = "depozit")
+@Table(name = "depozit", schema = "public")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Depozit implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 
@@ -32,10 +31,10 @@ public class Depozit implements Serializable {
     @Column(name = "material_depozit")
     private StocDepozit materialDepozit;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "depozit", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "depozit")
     private List<ProdusFinit> produseFinite = new LinkedList<>();
 
-    @ManyToOne
+    @OneToOne
     private NotaPredare notePredare;
 
     public Depozit() {

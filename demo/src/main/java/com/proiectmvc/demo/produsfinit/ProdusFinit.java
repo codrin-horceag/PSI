@@ -35,11 +35,9 @@ public class ProdusFinit implements Serializable {
     private String unitateMasura;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "produseFinites", "notePredare" }, allowSetters = true)
     private Depozit depozit;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "produseFinites", "depozites" }, allowSetters = true)
     private NotaPredare notePredare;
 
     public ProdusFinit() {
